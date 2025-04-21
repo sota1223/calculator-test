@@ -1,3 +1,4 @@
+/*
 document.addEventListener("DOMContentLoaded", () => {
   const display = document.getElementById('display');
   const numbers = document.querySelectorAll('.number');
@@ -24,4 +25,32 @@ document.addEventListener("DOMContentLoaded", () => {
   clear.addEventListener('click', function () {
     display.value = '';
   });
+});*/
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const display = document.getElementById("display");
+  const buttons = document.querySelectorAll("button");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let value = btn.innerText;
+
+      if (value === "=") {
+        try {
+          display.value = eval(display.value);
+        } catch (e) {
+          display.value = "エラー";
+        }
+      } else if (value === "C") {
+        display.value = "";
+      } else {
+        if (value === "×") value = "*";
+        if (value === "÷") value = "/";
+        display.value += value;
+      }
+    });
+  });
 });
+
+
